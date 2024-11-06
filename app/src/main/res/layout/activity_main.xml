@@ -37,17 +37,17 @@
         android:onClick="borrar"
         android:clickable="true"
         />
+
     <TextView
         android:id="@+id/tvCA"
-        android:tag="A"
-        android:text="A"
+        style="@style/Theme.AppCompat.Calculadora.BotonRojo"
         android:layout_row="1"
         android:layout_column="2"
         android:layout_marginEnd="1dp"
-        style="@style/Theme.AppCompat.Calculadora.BotonRojo"
-        android:onClick="borrar"
         android:clickable="true"
-        />
+        android:onClick="borrar"
+        android:tag="A"
+        android:text="A" />
 
     <!-- BOTONES DE NUMERACIÓN -->
     <TextView
@@ -61,17 +61,17 @@
         android:onClick="printNumber"
         android:clickable="true"
         />
+
     <TextView
         android:id="@+id/tv8"
-        android:tag="8"
-        android:text="8"
-        android:layout_width="wrap_content"
-        android:layout_column="1"
-        android:layout_row="2"
         style="@style/Theme.AppCompat.Calculadora.BotonAzul"
-        android:onClick="printNumber"
+        android:layout_width="wrap_content"
+        android:layout_row="2"
+        android:layout_column="1"
         android:clickable="true"
-        />
+        android:onClick="printNumber"
+        android:tag="8"
+        android:text="8" />
     <TextView
         android:id="@+id/tv9"
         android:tag="9"

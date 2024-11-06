@@ -1,6 +1,7 @@
 package com.marp.calculadora
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,4 +18,21 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+    fun printNumber(vista: View){
+
+    }
+
+    fun borrar(vista: View){
+
+    }
+
+    fun setOperador(vista: View){
+
+    }
+
+    fun setResultado(vista: View){
+
+    }
+
 }
