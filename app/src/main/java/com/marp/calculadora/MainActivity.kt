@@ -34,16 +34,14 @@ class MainActivity : AppCompatActivity() {
         if (tvResultado.text.toString() == "0" && !esPunto)
             tvResultado.text = ""
 
-        if(!esPunto && (!tvResultado.text.toString().contains(".")))
-
-
+        if(!esPunto || (!tvResultado.text.toString().contains(".")))
         tvResultado.text = tvResultado.text.toString() + textToBoton
     }
 
     fun borrar(vista: View){
 
-        if(vista.tag == "C"){
-
+        if(vista.tag.equals("A")){
+            tvResultado.text = "0"
         }
 
     }
