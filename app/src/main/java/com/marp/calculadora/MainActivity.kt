@@ -43,14 +43,14 @@ class MainActivity : AppCompatActivity() {
     fun borrar(vista: View) {
 
         when (vista.tag) {
-            "A" -> { //Borra todo lo introduido
+            "A" -> {
                 tvResultado.text = resultadoInicial
                 operando1 = Double.NaN
                 operando2 = Double.NaN
                 operador = ""
             }
 
-            "C" -> { //Borra el ultimo operador o numero
+            "C" -> {
                 val textAhora = tvResultado.text.toString()
                 if (textAhora.isNotEmpty()) {
                     tvResultado.text = textAhora.dropLast(1)
@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setOperador(vista: View) {
-
         if (!tvResultado.text.isNullOrEmpty()) {
             operando1 = tvResultado.text.toString().toDoubleOrNull() ?: Double.NaN
             operador = (vista as TextView).text.toString()
