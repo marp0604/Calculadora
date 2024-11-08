@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             tvResultado.text = ""
 
         if(!esPunto || (!tvResultado.text.toString().contains(".")))
-        tvResultado.text = tvResultado.text.toString() + textToBoton
+            tvResultado.text = tvResultado.text.toString() + textToBoton
     }
 
     fun borrar(vista: View){
