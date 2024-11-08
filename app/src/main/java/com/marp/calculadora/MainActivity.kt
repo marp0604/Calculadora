@@ -29,47 +29,67 @@ class MainActivity : AppCompatActivity() {
         tvResultado.text = resultadoInicial
     }
 
-    fun printNumber(vista: View){
+    fun printNumber(vista: View) {
         val textToBoton = (vista as TextView).text.toString()
         var esPunto = textToBoton == "."
 
         if (tvResultado.text.toString() == "0" && !esPunto)
             tvResultado.text = ""
 
-        if(!esPunto || (!tvResultado.text.toString().contains(".")))
+        if (!esPunto || (!tvResultado.text.toString().contains(".")))
             tvResultado.text = tvResultado.text.toString() + textToBoton
     }
 
-    fun borrar(vista: View){
+    fun borrar(vista: View) {
 
-        when(vista.tag){
+        when (vista.tag) {
             "A" -> { //Borra todo lo introduido
                 tvResultado.text = resultadoInicial
                 operando1 = Double.NaN
                 operando2 = Double.NaN
                 operador = ""
             }
+
             "C" -> { //Borra el ultimo operador o numero
-                val  textAhora= tvResultado.text.toString()
-                if(textAhora.isNotEmpty()){
+                val textAhora = tvResultado.text.toString()
+                if (textAhora.isNotEmpty()) {
                     tvResultado.text = textAhora.dropLast(1)
-                    if(tvResultado.text.isEmpty())
+                    if (tvResultado.text.isEmpty())
                         tvResultado.text = resultadoInicial
                 }
             }
         }
     }
 
-    fun setOperador(vista: View){
+    fun setOperador(vista: View) {
 
-        if (!tvResultado.text.isNullOrEmpty()){
-
+        if (!tvResultado.text.isNullOrEmpty()) {
+            operando1 = tvResultado.text.toString().toDoubleOrNull() ?: Double.NaN
+            operador = (vista as TextView).text.toString()
+            tvResultado.text = resultadoInicial
         }
-
     }
 
-    fun setResultado(vista: View){
+    fun setResultado(vista: View) {
+        if (!tvResultado.text.isNullOrEmpty()) {
+            operando2 = tvResultado.text.toString().toDoubleOrNull() ?: Double.NaN
 
+            if (!operando1.isNaN() && !operando2.isNaN()) {
+                val resultado = when (operador) {
+                    "+" -> operando1 + operando2
+                    "-" -> operando1 - operando2
+                    "*" -> operando1 * operando2
+                    "/" -> {
+                        if (operando2 != 0.0) operando1 / operando2
+                        else {
+                            tvResultado.text = resultadoInicial
+                            return
+                        }
+                    }
+                    else -> Double.NaN
+                }
+                tvResultado.text = if (resultado.isNaN()) "Error" else resultado.toString()
+            }
+        }
     }
-
 }
