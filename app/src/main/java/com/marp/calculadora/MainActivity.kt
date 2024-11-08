@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var operando1: Double = Double.NaN
     private var operando2: Double = Double.NaN
     private var operador: String = ""
+    private var resultadoInicial = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         tvResultado = findViewById(R.id.tvResultado)
+        tvResultado.text = resultadoInicial
     }
 
     fun printNumber(vista: View){
@@ -40,13 +42,29 @@ class MainActivity : AppCompatActivity() {
 
     fun borrar(vista: View){
 
-        if(vista.tag.equals("A")){
-            tvResultado.text = "0"
+        when(vista.tag){
+            "A" -> { //Borra todo lo introduido
+                tvResultado.text = resultadoInicial
+                operando1 = Double.NaN
+                operando2 = Double.NaN
+                operador = ""
+            }
+            "C" -> { //Borra el ultimo operador o numero
+                val  textAhora= tvResultado.text.toString()
+                if(textAhora.isNotEmpty()){
+                    tvResultado.text = textAhora.dropLast(1)
+                    if(tvResultado.text.isEmpty())
+                        tvResultado.text = resultadoInicial
+                }
+            }
         }
-
     }
 
     fun setOperador(vista: View){
+
+        if (!tvResultado.text.isNullOrEmpty()){
+
+        }
 
     }
 
