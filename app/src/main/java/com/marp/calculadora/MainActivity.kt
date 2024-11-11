@@ -61,6 +61,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun calcular(vista: View){
+        if (!operando1.isNaN() && !operando2.isNaN()) {
+            val resultado = when (operador) {
+                "+" -> operando1 + operando2
+                "-" -> operando1 - operando2
+                "*" -> operando1 * operando2
+                "/" -> {
+                    if (operando2 != 0.0) operando1 / operando2
+                    else {
+                        tvResultado.text = resultadoInicial
+                        return
+                    }
+                }
+                else -> Double.NaN
+            }
+            tvResultado.text = if (resultado.isNaN()) "Error" else resultado.toString()
+        }
+    }
+
     fun setOperador(vista: View) {
         if (!tvResultado.text.isNullOrEmpty()) {
             operando1 = tvResultado.text.toString().toDoubleOrNull() ?: Double.NaN
@@ -70,25 +89,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setResultado(vista: View) {
+        calcular(vista)
         if (!tvResultado.text.isNullOrEmpty()) {
             operando2 = tvResultado.text.toString().toDoubleOrNull() ?: Double.NaN
 
-            if (!operando1.isNaN() && !operando2.isNaN()) {
-                val resultado = when (operador) {
-                    "+" -> operando1 + operando2
-                    "-" -> operando1 - operando2
-                    "*" -> operando1 * operando2
-                    "/" -> {
-                        if (operando2 != 0.0) operando1 / operando2
-                        else {
-                            tvResultado.text = resultadoInicial
-                            return
-                        }
-                    }
-                    else -> Double.NaN
-                }
-                tvResultado.text = if (resultado.isNaN()) "Error" else resultado.toString()
-            }
         }
     }
 }
